@@ -1,0 +1,106 @@
+/* Menampilkan Popup Pola Main*/
+function show_popup(id_percent, random_1, random_2, random_3, random_4) {
+  var number_txt = $("#" + id_percent).html();
+  var percent = number_txt.replace("%", "").replace("RTP ", "");
+
+  if (percent < 30) {
+    $("#popup-container-bad").fadeIn(500);
+
+  } else {
+    $("#popup-container-win").fadeIn(500);
+
+    $("#tips_number_1").html(random_1);
+    $("#tips_number_2").html(random_2);
+    $("#tips_number_3").html(random_3);
+    $("#tips_number_4").html(random_4);
+  }
+}
+
+function close_popup() {
+  $(".popup-container").fadeOut(500);
+}
+
+
+/* Menampilkan Popup Ads Lowongan Admin*/
+$(document).ready(function () {
+  $("#popup-container-ads").fadeIn(0);
+});
+
+
+
+/* Slide Show Menu Mobile*/
+var slides = document.getElementsByClassName("mySlides");
+
+var slideIndex = 1;
+var x = window.matchMedia("(max-width: 992px)")
+media(x) // Call listener function at run time
+x.addListener(media) // Attach listener function on state changes
+
+function media(x) {
+  if (x.matches) {
+    showSlides(slideIndex);
+  } else {
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+  }
+}
+
+function plusSlides(n) {
+
+  var slides = document.getElementsByClassName("mySlides");
+  if (slideIndex <= slides.length - 4 || slideIndex >= 1) {
+
+    showSlides(slideIndex += n);
+  }
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+
+var x = window.matchMedia("(max-width: 992px)")
+console.log(x)
+
+function showSlides(n) {
+  var i;
+  if (n > slides.length) { slideIndex = 1 }
+  if (n < 1) { slideIndex = slides.length }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slides[slideIndex - 1].style.display = "block";
+}
+
+
+
+/* Slide Show Images */
+var slideIndexImages = 1;
+showSlidesImages(slideIndexImages);
+
+// Next/previous controls
+function plusSlidesImages(n) {
+  showSlidesImages(slideIndexImages += n);
+}
+
+// Thumbnail image controls
+function currentSlideImages(n) {
+  showSlidesImages(slideIndexImages = n);
+}
+
+function showSlidesImages(n) {
+  var i;
+  var slides = document.getElementsByClassName("slideshow-images");
+  var dots = document.getElementsByClassName("dot-slideshow-images");
+  if (n > slides.length) { slideIndexImages = 1 }
+  if (n <= 0) { slideIndexImages = slides.length }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active-slideshow-images", "");
+  }
+  /*slides[slideIndexImages - 1].style.display = "block";*/
+  /*dots[slideIndexImages-1].className += " active-slideshow-images";*/
+}
